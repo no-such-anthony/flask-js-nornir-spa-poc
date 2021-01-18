@@ -1,0 +1,14 @@
+#app {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.editor {
+    height: 630px;
+    width: 300px;
+    /* visibility: hidden; */
+  }
+
+.nav-link.active {
+  text-decoration: underline;
+}
