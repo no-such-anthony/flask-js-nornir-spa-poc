@@ -100,18 +100,23 @@ def task():
     else:
         s = st.sessions[session['id']]
 
-    work = request.get_json()
-    inventory = work['inventory']
-    hosts = yaml.safe_load(inventory['hosts'])
-    groups = yaml.safe_load(inventory['groups'])
-    defaults = yaml.safe_load(inventory['defaults'])
-    s.data['socket_id'] = work['socket']
+    try:
+        work = request.get_json()
+        inventory = work['inventory']
+        hosts = yaml.safe_load(inventory['hosts'])
+        groups = yaml.safe_load(inventory['groups'])
+        defaults = yaml.safe_load(inventory['defaults'])
+        s.data['socket_id'] = work['socket']
 
-    hosts = {} if hosts is None else hosts
-    groups = {} if groups is None else groups
-    defaults = {} if defaults is None else defaults
+    except Exception as e:
+            norn = f'<pre>{traceback.format_exc()}</pre>'
 
-    norn = nornir_run(hosts, groups, defaults, emitter)
+    else:
+        hosts = {} if hosts is None else hosts
+        groups = {} if groups is None else groups
+        defaults = {} if defaults is None else defaults
+
+        norn = nornir_run(hosts, groups, defaults, emitter)
 
     return jsonify({ 'results': norn })
 
