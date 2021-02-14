@@ -53,7 +53,7 @@ function fixEditors() {
         editor.getSession().setMode("ace/mode/" + mode);
         editor.setTheme("ace/theme/twilight");
         editor.getSession().setTabSize(2);
-        d.setAttribute('visibility', 'visible');
+        d.style.visibility = "visible";
     });
 }
 

@@ -6,7 +6,7 @@
 .editor {
     height: 630px;
     width: 300px;
-    /* visibility: hidden; */
+    visibility: hidden;
   }
 
 .nav-link.active {
